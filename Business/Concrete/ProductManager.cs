@@ -22,6 +22,11 @@ namespace Business.Concrete
 
         public IResult Add(Product product)
         {
+            //validation = (Doğrulama gelen nesnenin yapsının uygunluğunu kontrol eder.
+            if (product.UnitPrice <= 0)
+            {
+                return new ErrorResult(Messages.UnitPriceInvalid);
+            }
             if (product.ProductName.Length < 2)
             {
                 //magic strings
